@@ -6,6 +6,8 @@ import Cart from './CartPage'
 import Checkout from './CheckoutPage'
 import PrivateRoute from './PrivateRoute'
 import ErrorPage from './ErrorPage'
+import AuthWrapper from './AuthWrapper'
+import { StripeCheckout } from '../components'
 
 export { 
     Home,
@@ -15,5 +17,7 @@ export {
     Cart,
     Checkout,
     PrivateRoute,
-    ErrorPage
+    ErrorPage,
+    AuthWrapper,
+    StripeCheckout,
  }

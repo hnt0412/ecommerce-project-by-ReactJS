@@ -13,11 +13,6 @@ export const links = [
   },
   {
     id: 3,
-    text: 'checkout',
-    url: '/checkout',
-  },
-  {
-    id: 4,
     text: 'about',
     url: '/about',
   },

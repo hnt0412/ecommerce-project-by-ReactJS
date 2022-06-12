@@ -13,14 +13,93 @@ import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
 
+const promise = loadStripe('pk_test_51L9ho2AmFVaMN9BfQqRGYklc21Oo9u4omCRJDZSnSowhTxU7NDFXVEqXPtagTsV4CYQbkFGKHgQUQoU5P8pZYwKG00Y2emXjkg')
+
 const CheckoutForm = () => {
-  return <h4>hello from Stripe Checkout </h4>
+  const {cart,total_amount,shipping_fee,clearCart} = useCartContext()
+  const {myUser} = useUserContext()
+  const history = useHistory()
+
+  const [succeeded,setSucceeded] = useState(false)
+  const [error,setError] = useState(null)
+  const [processing,setProcessing] = useState('')
+  const [disabled,setDisabled] = useState(true)
+  const [clientSecret,setClientSecret] = useState('')
+  const stripe = useState()
+  const elements = useElements()
+  const cardStyle = {
+    style: {
+      base: {
+        color: '#32325d',
+        fontFamily: 'Arial, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#32325d',
+        },
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a',
+      },
+    },
+  };
+
+  const createPaymentIntent = async () => {
+    console.log('hello strip')
+  }
+
+  useEffect(() => {
+    createPaymentIntent()
+  },[])
+
+  const handleChange = async (event) => {}
+  const handleSubmit = async (event) => {}
+
+  return (
+    <div>
+      <article>
+        <h4>Hello, {myUser && myUser.name}</h4>
+        <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
+        <p>Card number: 12434 343545 5656</p>
+      </article>
+      <form id='payment-form' onSubmit={handleSubmit}>
+        <CardElement
+        id='cart-element'
+        options={cardStyle}
+        onChange={handleChange}
+        />
+        <button disabled={processing || disabled || succeeded} id="submit">
+          <span id='button-text'>
+            {processing ? <div className='spinner' id='spinner'></div> : 'Pay'}
+          </span>
+        </button>
+        {
+          error && (
+            <div className='cart-error' role='alert'>
+              {error}
+            </div>
+          )
+        }
+        <p className={succeeded ? 'result-message' : 'result-message hidden'}>
+          Payment succeeded, see the result in your
+          <a href={`https://dashboard.stripe.com/test/payments`}>
+            {' '}
+            Stripe dashboard.
+          </a>{' '}
+          Refresh the page to pay again.
+        </p>
+      </form>
+    </div>
+  )
 }
 
 const StripeCheckout = () => {
   return (
     <Wrapper>
+      <Elements stripe={promise}>
       <CheckoutForm />
+      </Elements>
     </Wrapper>
   )
 }
