@@ -1,4 +1,3 @@
-import { StaticRouter } from 'react-router-dom'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,

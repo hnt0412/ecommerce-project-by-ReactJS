@@ -9,8 +9,8 @@ const Hero = () => {
     <Wrapper className='section-center'>
       <article className='content'>
         <h1>
-          your design<br/>
-          comfort zone
+          Our design<br/>
+          bring comfort to you
         </h1>
         <p>
         There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.

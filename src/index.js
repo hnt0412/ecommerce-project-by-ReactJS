@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
@@ -7,8 +7,6 @@ import { FilterProvider } from './context/filter_context'
 import { CartProvider } from './context/cart_context'
 import { UserProvider } from './context/user_context'
 import { Auth0Provider } from '@auth0/auth0-react'
-//dev-zcrxqqv1.us.auth0.com
-//N6fQbvZWDoep0FbIdkcRbhRVUTqpPiyh
 
 ReactDOM.render(
     <Auth0Provider
